@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#07111f" />
+    <title>Personal Codex</title>
+    <link rel="stylesheet" href="/vendor/inter/latin-400.css" />
+    <link rel="stylesheet" href="/vendor/inter/latin-500.css" />
+    <link rel="stylesheet" href="/vendor/inter/latin-600.css" />
+    <link rel="stylesheet" href="/vendor/inter/latin-700.css" />
+    <link rel="stylesheet" href="/vendor/phosphor/style.css" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <div class="brand-row">
+          <div class="brand-mark" aria-hidden="true"><i class="ph-light ph-sparkle"></i></div>
+          <div>
+            <strong>Personal Codex</strong>
+            <span>Your private workspace</span>
+          </div>
+        </div>
+
+        <button class="new-chat-button" id="new-chat-button" type="button">
+          <i class="ph-light ph-plus"></i>
+          New conversation
+        </button>
+
+        <section class="sidebar-section projects-section" aria-labelledby="projects-label">
+          <div class="section-heading">
+            <p class="section-label" id="projects-label">Projects</p>
+            <button class="add-project-button" id="add-project-button" type="button" title="Add a folder from this computer">
+              <i class="ph-light ph-folder-plus" aria-hidden="true"></i>
+              <span>Add folder</span>
+            </button>
+          </div>
+          <div class="project-list" id="project-list"></div>
+        </section>
+
+        <section class="sidebar-section current-section" aria-labelledby="conversation-label">
+          <p class="section-label" id="conversation-label">Conversation</p>
+          <div class="conversation-row is-active" aria-current="page">
+            <span class="conversation-icon" aria-hidden="true"><i class="ph-light ph-chat-circle-dots"></i></span>
+            <span>
+              <strong id="conversation-title">New conversation</strong>
+              <small id="conversation-subtitle">Ready when you are</small>
+            </span>
+          </div>
+        </section>
+
+        <div class="privacy-card">
+          <i class="ph-light ph-shield-check" aria-hidden="true"></i>
+          <div>
+            <strong>Approval protected</strong>
+            <p>Commands and extra file access wait for your decision.</p>
+          </div>
+        </div>
+
+        <div class="sidebar-footer">
+          <span class="device-dot" id="device-dot"></span>
+          <div>
+            <strong id="device-status">Starting locally</strong>
+            <span>127.0.0.1 · this computer only</span>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-panel">
+        <header class="topbar">
+          <button class="icon-button mobile-only" id="menu-button" type="button" aria-label="Open navigation">
+            <i class="ph-light ph-list"></i>
+          </button>
+
+          <div class="topbar-title">
+            <span class="eyebrow">Current project</span>
+            <strong id="current-project-name">Home</strong>
+            <small id="current-project-path">Loading folder…</small>
+          </div>
+
+          <div class="topbar-actions">
+            <div class="usage-meter" id="usage-meter" hidden>
+              <div class="usage-copy">
+                <span>Codex usage</span>
+                <strong id="usage-label">—</strong>
+              </div>
+              <div class="usage-track" role="progressbar" aria-label="Codex usage used" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <span id="usage-fill"></span>
+              </div>
+              <small id="usage-reset">Plan limit</small>
+            </div>
+
+            <div class="account-chip" id="account-chip" hidden>
+              <span class="status-dot"></span>
+              <span id="account-label">Connected</span>
+            </div>
+
+            <button class="connect-small" id="connect-top-button" type="button">Connect ChatGPT</button>
+          </div>
+        </header>
+
+        <section class="conversation" id="conversation" aria-label="Conversation">
+          <div class="login-card" id="login-card">
+            <div class="login-symbol" aria-hidden="true"><i class="ph-light ph-user-circle-plus"></i></div>
+            <div class="login-copy">
+              <span class="eyebrow">One-time setup</span>
+              <h2>Connect your ChatGPT account</h2>
+              <p>This uses your existing Codex plan and limits. No API key or separate bill.</p>
+            </div>
+            <button class="primary-button" id="connect-button" type="button">
+              Connect ChatGPT
+              <i class="ph-light ph-arrow-right"></i>
+            </button>
+          </div>
+
+          <div class="empty-state" id="empty-state">
+            <div class="empty-mark" aria-hidden="true"><i class="ph-light ph-sparkle"></i></div>
+            <span class="eyebrow">Your agent is ready</span>
+            <h1>What are we working on?</h1>
+            <p>The selected project is the folder Codex can work inside. Choose a model and thinking level before you send.</p>
+            <div class="suggestion-grid" aria-label="Suggestions">
+              <button class="suggestion" type="button" data-prompt="Help me plan and build a coding project.">
+                <i class="ph-light ph-code" aria-hidden="true"></i>
+                <span><strong>Help me code</strong><small>Plan, build, and fix</small></span>
+              </button>
+              <button class="suggestion" type="button" data-prompt="Help me turn this idea into a great prompt: ">
+                <i class="ph-light ph-magic-wand" aria-hidden="true"></i>
+                <span><strong>Improve a prompt</strong><small>Make an idea precise</small></span>
+              </button>
+              <button class="suggestion" type="button" data-prompt="Research this company and summarize the best useful information: ">
+                <i class="ph-light ph-magnifying-glass" aria-hidden="true"></i>
+                <span><strong>Research a company</strong><small>Find and compare data</small></span>
+              </button>
+              <button class="suggestion" type="button" data-prompt="Create a professional document for me. First, ask what it should contain.">
+                <i class="ph-light ph-file-doc" aria-hidden="true"></i>
+                <span><strong>Create a document</strong><small>Word, Excel, or reports</small></span>
+              </button>
+            </div>
+          </div>
+
+          <div class="messages" id="messages" aria-live="polite"></div>
+          <div class="approval-stack" id="approval-stack" aria-live="assertive"></div>
+        </section>
+
+        <footer class="composer-wrap">
+          <div class="working-status" id="working-status" hidden>
+            <span class="thinking-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span id="activity-label">Thinking…</span>
+          </div>
+
+          <form class="composer" id="composer">
+            <textarea id="prompt-input" rows="1" maxlength="50000" placeholder="Message your personal agent…" aria-label="Message your personal agent"></textarea>
+            <div class="composer-bottom">
+              <div class="model-control-wrap">
+                <button class="model-trigger" id="model-trigger" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="intelligence-popover">
+                  <i class="ph-light ph-lightning" aria-hidden="true"></i>
+                  <span>
+                    <strong id="model-trigger-effort">Thinking</strong>
+                    <small id="model-trigger-name">Loading models…</small>
+                  </span>
+                  <i class="ph-light ph-caret-up" aria-hidden="true"></i>
+                </button>
+
+                <section class="intelligence-popover" id="intelligence-popover" role="dialog" aria-label="Model and intelligence" hidden>
+                  <div class="intelligence-header">
+                    <i class="ph-light ph-lightning intelligence-symbol" aria-hidden="true"></i>
+                    <div class="intelligence-title">
+                      <div class="intelligence-title-row">
+                        <strong id="intelligence-heading">Max</strong>
+                        <i class="ph-light ph-caret-right" aria-hidden="true"></i>
+                      </div>
+                      <span id="intelligence-model-name">GPT-6 Astra</span>
+                    </div>
+                    <button class="reset-intelligence" id="reset-intelligence" type="button" aria-label="Reset model and thinking level" title="Reset">
+                      <i class="ph-light ph-arrow-counter-clockwise"></i>
+                    </button>
+                  </div>
+
+                  <div class="effort-slider-shell" id="effort-slider-shell">
+                    <span class="effort-progress" id="effort-progress"></span>
+                    <div class="effort-ticks" id="effort-ticks" aria-hidden="true"></div>
+                    <input id="effort-range" type="range" min="0" max="0" step="1" value="0" aria-label="Intelligence level" />
+                  </div>
+                  <p class="effort-description" id="effort-description">Choose how deeply the model should think.</p>
+
+                  <div class="model-picker">
+                    <span>Model</span>
+                    <div class="model-options" id="model-options" role="group" aria-label="Model"></div>
+                  </div>
+                </section>
+              </div>
+
+              <div class="access-label" title="Extra computer access requires your approval">
+                <i class="ph-light ph-shield-check" aria-hidden="true"></i>
+                Approval mode
+              </div>
+              <button class="stop-button" id="stop-button" type="button" hidden aria-label="Stop response">
+                <span></span>
+                Stop
+              </button>
+              <button class="send-button" id="send-button" type="submit" aria-label="Send message">
+                <i class="ph-light ph-arrow-up"></i>
+              </button>
+            </div>
+          </form>
+          <p class="composer-note">Local interface · replies use your Codex account · actions stay approval protected</p>
+        </footer>
+      </main>
+    </div>
+
+    <button class="sidebar-backdrop" id="sidebar-backdrop" type="button" aria-label="Close navigation" hidden></button>
+    <div class="toast-region" id="toast-region" aria-live="polite"></div>
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>
